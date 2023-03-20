@@ -33,8 +33,8 @@ func (m JWTAuthMiddleware) Setup() {}
 func (m JWTAuthMiddleware) Handler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.Request.Header.Get("Authorization")
-		t := strings.Split(authHeader, " ")
-		if len(t) == 2 {
+		t := strings.Split(authHeader, ".")
+		if len(t) == 3 {
 			authToken := t[1]
 			authorized, err := m.service.Authorize(authToken)
 			if authorized {
