@@ -1,15 +1,15 @@
 package controllers
 
 import (
+	"github.com/JooHyeongLee/clean-gin/constants"
+	"gorm.io/gorm"
 	"net/http"
 	"strconv"
 
-	"github.com/JooHyeongLee/clean-gin/constants"
 	"github.com/JooHyeongLee/clean-gin/domains"
 	"github.com/JooHyeongLee/clean-gin/lib"
 	"github.com/JooHyeongLee/clean-gin/models"
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 )
 
 // UserController data type
@@ -88,6 +88,22 @@ func (u UserController) SaveUser(c *gin.Context) {
 
 // UpdateUser updates user
 func (u UserController) UpdateUser(c *gin.Context) {
+	user := models.User{}
+	trxHandle := c.MustGet(constants.DBTransaction).(*gorm.DB)
+	if err := c.ShouldBindJSON(&user); err != nil {
+		u.logger.Error(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	if err := u.service.WithTrx(trxHandle).UpdateUser(user); err != nil {
+		u.logger.Error(err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
 	c.JSON(200, gin.H{"data": "user updated"})
 }
 

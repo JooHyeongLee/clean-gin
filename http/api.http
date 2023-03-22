@@ -1,0 +1,43 @@
+POST {{host}}:{{port}}/api/user/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYW5AeWFuYWRvb2NvcnAuY29tIiwiaWQiOjEsIm5hbWUiOiJkZWFuIn0.LYl7RydtZvJjvWJSS_Nu7t3AvxjsjniepGLUi5F_Vc8
+
+{
+  "name": "dean1",
+  "email":  "dean@yanadoocorp.com",
+  "age": 100,
+  "time":  "1592-01-01T00:00:00+00:00",
+  "created_at":  "2023-03-22T00:00:00+00:00",
+  "updated_at": "2023-03-22T00:00:00+00:00"
+}
+
+###
+#유저 정보 확인 (by id)
+GET {{host}}:{{port}}/api/user/1
+Accept: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYW5AeWFuYWRvb2NvcnAuY29tIiwiaWQiOjEsIm5hbWUiOiJkZWFuIn0.LYl7RydtZvJjvWJSS_Nu7t3AvxjsjniepGLUi5F_Vc8
+
+### 토큰생성
+POST {{host}}:{{port}}/auth/login
+Content-Type: application/json
+
+{}
+
+### 회원가입
+POST {{host}}:{{port}}/api/user
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYW5AeWFuYWRvb2NvcnAuY29tIiwiaWQiOjEsIm5hbWUiOiJkZWFuIn0.LYl7RydtZvJjvWJSS_Nu7t3AvxjsjniepGLUi5F_Vc8
+
+{
+  "name": "jerry",
+  "email":  "jerry@yanadoocorp.com",
+  "age": 100,
+  "time":  "1592-01-01T00:00:00+00:00",
+  "created_at":  "2023-03-22T00:00:00+00:00",
+  "updated_at": "2023-03-22T00:00:00+00:00"
+}
+
+
+
+
+
