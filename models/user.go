@@ -1,23 +1,24 @@
 package models
 
 import (
-	"database/sql"
 	"time"
 )
 
+const TableNameUser = "users"
+
 // User model
 type User struct {
-	ID           uint           `json:"id"`
-	Name         string         `json:"name"`
-	Email        *string        `json:"email"`
-	Age          uint8          `json:"age"`
-	Birthday     *time.Time     `json:"time"`
-	MemberNumber sql.NullString `json:"member_number"`
-	CreatedAt    time.Time      `json:"created_at"`
-	UpdatedAt    time.Time      `json:"updated_at"`
+	ID           int32     `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	Email        string    `gorm:"column:email;not null" json:"email"`
+	Name         string    `gorm:"column:name;not null" json:"name"`
+	Age          int32     `gorm:"column:age" json:"age"`
+	Birthday     time.Time `gorm:"column:birthday" json:"birthday"`
+	MemberNumber string    `gorm:"column:member_number" json:"member_number"`
+	CreatedAt    time.Time `gorm:"column:created_at;not null" json:"created_at"`
+	UpdatedAt    time.Time `gorm:"column:updated_at;not null" json:"updated_at"`
 }
 
-// TableName gives table name of model
-func (u User) TableName() string {
-	return "users"
+// TableName User's table name
+func (*User) TableName() string {
+	return TableNameUser
 }

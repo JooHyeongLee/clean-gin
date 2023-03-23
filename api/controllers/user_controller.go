@@ -75,6 +75,7 @@ func (u UserController) SaveUser(c *gin.Context) {
 		})
 		return
 	}
+
 	if err := u.service.WithTrx(trxHandle).CreateUser(user); err != nil {
 		u.logger.Error(err)
 		c.JSON(http.StatusInternalServerError, gin.H{

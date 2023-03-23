@@ -1,9 +1,9 @@
 package middlewares
 
 import (
+	"github.com/JooHyeongLee/clean-gin/constants"
 	"net/http"
 
-	"github.com/JooHyeongLee/clean-gin/constants"
 	"github.com/JooHyeongLee/clean-gin/lib"
 	"github.com/gin-gonic/gin"
 )
@@ -43,7 +43,7 @@ func (m DatabaseTrx) Setup() {
 	m.logger.Info("setting up database transaction middleware")
 
 	m.handler.Gin.Use(func(c *gin.Context) {
-		txHandle := m.db.DB.Begin()
+		txHandle := m.db.Begin()
 		m.logger.Info("beginning database transaction")
 
 		defer func() {

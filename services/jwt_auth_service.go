@@ -45,7 +45,7 @@ func (s JWTAuthService) CreateToken(user models.User) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id":    user.ID,
 		"name":  user.Name,
-		"email": *user.Email,
+		"email": user.Email,
 	})
 
 	tokenString, err := token.SignedString([]byte(s.env.JWTSecret))
