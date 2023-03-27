@@ -3,7 +3,6 @@ module github.com/JooHyeongLee/clean-gin
 go 1.17
 
 require (
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/joho/godotenv v1.4.0
@@ -16,6 +15,7 @@ require (
 )
 
 require (
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/rs/cors/wrapper/gin v0.0.0-20220223021805-a4a5ce87d5a2
 	go.uber.org/fx v1.17.1
 )

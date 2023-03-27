@@ -2,10 +2,9 @@ package middlewares
 
 import (
 	"github.com/JooHyeongLee/clean-gin/constants"
-	"net/http"
-
 	"github.com/JooHyeongLee/clean-gin/lib"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 // DatabaseTrx middleware for transactions support for database
@@ -43,7 +42,7 @@ func (m DatabaseTrx) Setup() {
 	m.logger.Info("setting up database transaction middleware")
 
 	m.handler.Gin.Use(func(c *gin.Context) {
-		txHandle := m.db.Begin()
+		txHandle := m.db.DB.Begin()
 		m.logger.Info("beginning database transaction")
 
 		defer func() {
@@ -65,5 +64,6 @@ func (m DatabaseTrx) Setup() {
 			m.logger.Info("rolling back transaction due to status code: 500")
 			txHandle.Rollback()
 		}
+
 	})
 }

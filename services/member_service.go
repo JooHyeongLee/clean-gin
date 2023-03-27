@@ -1,7 +1,6 @@
 package services
 
 import (
-	"github.com/JooHyeongLee/clean-gin/domains"
 	"github.com/JooHyeongLee/clean-gin/lib"
 	"github.com/JooHyeongLee/clean-gin/models"
 	"github.com/JooHyeongLee/clean-gin/repository"
@@ -11,14 +10,6 @@ import (
 type MemberService struct {
 	logger     lib.Logger
 	repository repository.MemberRepository
-}
-
-// NewMemberService creates a new userservice
-func NewMemberService(logger lib.Logger, repository repository.MemberRepository) domains.MemberService {
-	return MemberService{
-		logger:     logger,
-		repository: repository,
-	}
 }
 
 // GetOneMember gets one user

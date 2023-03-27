@@ -17,7 +17,7 @@ type UserRoutes struct {
 // Setup user routes
 func (s UserRoutes) Setup() {
 	s.logger.Info("Setting up routes")
-	api := s.handler.Gin.Group("/api").Use(s.authMiddleware.Handler())
+	api := s.handler.Gin.Group("/api") /*.Use(s.authMiddleware.Handler())*/
 	{
 		api.GET("/user", s.userController.GetUser)
 		api.GET("/user/:id", s.userController.GetOneUser)

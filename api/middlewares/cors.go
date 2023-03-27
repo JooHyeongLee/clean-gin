@@ -33,4 +33,5 @@ func (m CorsMiddleware) Setup() {
 		AllowedMethods:   []string{"GET", "POST", "PUT", "HEAD", "OPTIONS"},
 		Debug:            debug,
 	}))
+	m.handler.Gin.SetTrustedProxies(nil)
 }

@@ -1,12 +1,11 @@
 package middlewares
 
 import (
-	"net/http"
-	"strings"
-
 	"github.com/JooHyeongLee/clean-gin/domains"
 	"github.com/JooHyeongLee/clean-gin/lib"
 	"github.com/gin-gonic/gin"
+	"net/http"
+	"strings"
 )
 
 // JWTAuthMiddleware middleware for jwt authentication
@@ -33,8 +32,9 @@ func (m JWTAuthMiddleware) Setup() {}
 func (m JWTAuthMiddleware) Handler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.Request.Header.Get("Authorization")
-		t := strings.Split(authHeader, ".")
-		if len(t) == 3 {
+		t := strings.Split(authHeader, " ")
+
+		if len(t) == 2 {
 			authToken := t[1]
 			authorized, err := m.service.Authorize(authToken)
 			if authorized {

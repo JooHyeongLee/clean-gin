@@ -19,14 +19,6 @@ func NewUserRepository(db lib.Database, logger lib.Logger) UserRepository {
 	}
 }
 
-// NewMemberRepository creates a new user repository
-func NewMemberRepository(db lib.Database, logger lib.Logger) MemberRepository {
-	return MemberRepository{
-		Database: db,
-		logger:   logger,
-	}
-}
-
 // WithTrx enables repository with transaction
 func (r UserRepository) WithTrx(trxHandle *gorm.DB) UserRepository {
 	if trxHandle == nil {

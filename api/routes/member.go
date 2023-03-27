@@ -20,16 +20,3 @@ func (s MemberRoutes) Setup() {
 		api.GET("/member/:id", s.memberController.GetOneMember)
 	}
 }
-
-// NewMemberRoutes creates new user controller
-func NewMemberRoutes(
-	logger lib.Logger,
-	handler lib.RequestHandler,
-	memberController controllers.MemberController,
-) MemberRoutes {
-	return MemberRoutes{
-		handler:          handler,
-		logger:           logger,
-		memberController: memberController,
-	}
-}

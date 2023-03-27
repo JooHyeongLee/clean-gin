@@ -3,10 +3,11 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYW5AeWFuYWRvb2NvcnAuY29tIiwiaWQiOjEsIm5hbWUiOiJkZWFuIn0.LYl7RydtZvJjvWJSS_Nu7t3AvxjsjniepGLUi5F_Vc8
 
 {
+  "id": 1,
   "email": "dean@yanadoocorp.com",
-  "name": "dean1",
-  "age": 100,
-  "birthday":  "1592-01-01T00:00:00+00:00",
+  "name": "dean",
+  "age": 32,
+  "birthday":  "1992-11-07T00:00:00+00:00",
   "created_at":  "2023-03-22T00:00:00+00:00",
   "updated_at": "2023-03-22T00:00:00+00:00"
 }
@@ -29,10 +30,10 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRlYW5AeWFuYWRvb2NvcnAuY29tIiwiaWQiOjEsIm5hbWUiOiJkZWFuIn0.LYl7RydtZvJjvWJSS_Nu7t3AvxjsjniepGLUi5F_Vc8
 
 {
-  "name": "jerry",
-  "email":  "jerry@yanadoocorp.com",
+  "email": "dean10@yanadoocorp.com",
+  "name": "dean1",
   "age": 100,
-  "time":  "1592-01-01T00:00:00+00:00",
+  "birthday":  "1592-01-01T00:00:00+00:00",
   "created_at":  "2023-03-22T00:00:00+00:00",
   "updated_at": "2023-03-22T00:00:00+00:00"
 }

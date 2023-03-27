@@ -14,14 +14,6 @@ type MemberController struct {
 	logger  lib.Logger
 }
 
-// NewMemberController creates new user controller
-func NewMemberController(memberService domains.MemberService, logger lib.Logger) MemberController {
-	return MemberController{
-		service: memberService,
-		logger:  logger,
-	}
-}
-
 // GetOneMember gets one user
 func (u MemberController) GetOneMember(c *gin.Context) {
 	paramID := c.Param("id")
