@@ -5,8 +5,6 @@ import (
 	"github.com/JooHyeongLee/clean-gin/domains"
 	"github.com/JooHyeongLee/clean-gin/lib"
 	"github.com/JooHyeongLee/clean-gin/models"
-	"time"
-
 	//"github.com/dgrijalva/jwt-go"
 	"github.com/golang-jwt/jwt/v4"
 )
@@ -46,11 +44,9 @@ func (s JWTAuthService) Authorize(tokenString string) (bool, error) {
 // CreateToken creates jwt auth token
 func (s JWTAuthService) CreateToken(user models.User) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"id":         user.ID,
-		"name":       user.Name,
-		"email":      *user.Email,
-		"exp":        time.Now().Add(10 * time.Minute),
-		"authorized": true,
+		"id":    user.ID,
+		"name":  user.Name,
+		"email": *user.Email,
 	})
 
 	tokenString, err := token.SignedString([]byte(s.env.JWTSecret))
