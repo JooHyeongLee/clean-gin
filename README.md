@@ -90,3 +90,10 @@ If you are running without docker be sure database configuration is provided in 
 Please open issues if you want the template to add some features that is not in todos. 🙇‍♂️
 
 Create a PR with relevant information if you want to contribute in this template.
+
+
+## Proto Compile example
+protoc -I=. \
+--go_out . --go_opt paths=source_relative \
+--go-grpc_out . --go-grpc_opt paths=source_relative \
+proto/user/user.proto

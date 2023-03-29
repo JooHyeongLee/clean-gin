@@ -1,10 +1,11 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"github.com/JooHyeongLee/clean-gin/bootstrap"
-	pb "github.com/JooHyeongLee/clean-gin/proto"
+	pb "github.com/JooHyeongLee/clean-gin/proto/user"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/joho/godotenv"
 	"google.golang.org/grpc"
@@ -17,7 +18,16 @@ var (
 )
 
 type server struct {
-	pb.UnimplementedGreeterServer
+	pb.UnimplementedUserServer
+}
+
+// GetUser returns user message by user_id
+func (s *server) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+	var userMessage *pb.UserMessage
+	fmt.Println("hello Get User")
+	return &pb.GetUserResponse{
+		UserMessage: userMessage,
+	}, nil
 }
 
 func main() {
@@ -30,7 +40,7 @@ func main() {
 			log.Fatalf("failed to listen: %v", err)
 		}
 		s := grpc.NewServer()
-		pb.RegisterGreeterServer(s, &server{})
+		pb.RegisterUserServer(s, &server{})
 		log.Printf("server listening at %v", lis.Addr())
 		if err := s.Serve(lis); err != nil {
 			log.Fatalf("failed to serve: %v", err)
@@ -38,6 +48,6 @@ func main() {
 	}()
 
 	_ = godotenv.Load()
-	//rest server
+	// rest server
 	bootstrap.RootApp.Execute()
 }
