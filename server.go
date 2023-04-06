@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/JooHyeongLee/clean-gin/api/proto/sample"
+	"github.com/JooHyeongLee/clean-gin/api/proto/stream"
 	"github.com/JooHyeongLee/clean-gin/api/proto/user"
 	"github.com/JooHyeongLee/clean-gin/bootstrap"
 	"github.com/JooHyeongLee/clean-gin/internal/grpc/handlers"
@@ -31,7 +32,8 @@ func main() {
 		s := grpc.NewServer()
 		// handler 등록
 		user.RegisterUserServer(s, handlers.NewUserHandler())
-		routeguide.RegisterRouteGuideServer(s, handlers.NewRouteGuideHandler())
+		sample.RegisterRouteGuideServer(s, handlers.NewRouteGuideHandler())
+		stream.RegisterStreamServiceServer(s, handlers.NewStreamHandler())
 
 		log.Printf("server listening at %v", lis.Addr())
 		if err := s.Serve(lis); err != nil {

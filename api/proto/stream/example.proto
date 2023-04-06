@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package v1.stream;
+option go_package = "github.com/JooHyeongLee/clean-gin/proto/stream";
+
+service StreamService {
+    rpc BidirectionalStreaming(stream Request) returns (stream Response) {}
+}
+
+message Request {
+  string message = 1;
+}
+
+message Response {
+  string message = 1;
+}
