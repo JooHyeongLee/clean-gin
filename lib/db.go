@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/plugin/dbresolver"
 )
 
 // Database modal
@@ -21,9 +22,14 @@ func NewDatabase(env Env, logger Logger) Database {
 	dbname := env.DBName
 
 	url := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, port, dbname)
+	readonly := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, "3307", dbname)
+
 	db, err := gorm.Open(mysql.Open(url), &gorm.Config{
 		Logger: logger.GetGormLogger(),
 	})
+	db.Use(dbresolver.Register(dbresolver.Config{
+		Sources: []gorm.Dialector{mysql.Open(readonly)},
+	}))
 
 	if err != nil {
 		logger.Info("Url: ", url)
