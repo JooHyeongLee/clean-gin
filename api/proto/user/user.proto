@@ -4,8 +4,14 @@ package v1.user;
 
 option go_package = "github.com/JooHyeongLee/clean-gin/proto/user";
 
+import "google/api/annotations.proto";
+
 service User {
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/{id}"
+    };
+  };
   rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
 }
 
